@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxw.demo.dao.RecordDao">
+
+    <resultMap id="recordMap" type="record">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="phone_num" property="phoneNum"></result>
+        <result column="time" property="time"></result>
+        <result column="detailed" property="detailed"></result>
+    </resultMap>
+
+    <insert id="insertRecord" parameterType="record">
+        insert into record(id,name,phone_num, time, detailed) values(#{id}, #{name}, #{phoneNum}, #{time}, #{detailed})
+    </insert>
+
+    <delete id="deleteRecord">
+        delete from record where id = #{id}
+    </delete>
+
+    <select id="getRecords" resultMap="recordMap">
+        select * from record;
+    </select>
+
+    <update id="updateRecord" parameterType="record">
+        update record set name = #{name}, phone_num = #{phoneNum}, time=#{time}, detailed=#{detailed} where id = #{id}
+    </update>
+
+
+</mapper>
